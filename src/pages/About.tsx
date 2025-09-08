@@ -3,7 +3,6 @@ import InfoCard from '../components/molecules/InfoCard';
 import TestimonialCard from '../components/molecules/TestimonialCard';
 import MainContent from '../components/organisms/MainContent';
 import { testimonials } from '../utils/data/testimonials';
-import { motion } from 'motion/react';
 
 const About = () => {
     const testimonialRef = useRef<HTMLDivElement>(null);
@@ -46,12 +45,7 @@ const About = () => {
             {/* What I'm Doing */}
             <div>
                 <h3 className="text-apple-label-primary mb-6 text-2xl font-bold">What I'm Doing</h3>
-                <motion.div
-                    initial={{ opacity: 0, translateY: 100 }} // Starting state
-                    animate={{ opacity: 1, translateY: 0 }} // Ending state
-                    transition={{ duration: 0.5 }} // Animation speed
-                    className="grid grid-cols-1 gap-6 md:grid-cols-2"
-                >
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <InfoCard
                         name="Palette"
                         className="hover:border-apple-blue hover:bg-apple-blue/25 items-start border border-transparent p-6 transition-all duration-300 hover:border"
@@ -76,7 +70,7 @@ const About = () => {
                         description="Professional development of applications for iOS and Android."
                         descriptionClassName="text-base"
                     />
-                </motion.div>
+                </div>
             </div>
 
             {/* Testimonials */}
