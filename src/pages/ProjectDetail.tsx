@@ -5,13 +5,38 @@ import SafeImage from '../components/atoms/SafeImage';
 import CardContainer from '../components/atoms/CardContainer';
 import type { IProject } from '../utils/data/projects';
 import { useLoaderData, useNavigate } from 'react-router';
+import { useContext } from 'react';
+import { AppContext } from '../App';
 
 const ProjectDetail = () => {
     const data = useLoaderData() as IProject;
     const navigate = useNavigate();
+    const appContext = useContext(AppContext);
 
     const backToProjects = () => {
         navigate(`/projects`);
+    };
+
+    const getInTouch = () => {
+        if (!appContext) return null;
+
+        appContext.setGlobalValue({
+            ...appContext,
+            mail: {
+                subject: `I really like your project: "${data.name}"`,
+                message: `Hi there,
+
+I just saw your project titled "${data.name}" and I really like it. 
+I would love to connect and discuss how we might collaborate or bring ideas to life together.
+
+Looking forward to hearing from you!
+
+Best regards,
+{name}`,
+            },
+        });
+
+        navigate(`/contact`);
     };
 
     return (
@@ -37,7 +62,7 @@ const ProjectDetail = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <Calendar size={16} className="text-apple-label-secondary" />
-                                <Badge className="border-apple-blue border px-2 py-0.5 text-xs font-bold">{data.category}</Badge>
+                                <Badge className="border-apple-blue border px-2 py-0.5 text-xs font-semibold">{data.category}</Badge>
                             </div>
                         </div>
                     </div>
@@ -67,7 +92,10 @@ const ProjectDetail = () => {
                             <h2 className="text-apple-label-primary mb-3 text-2xl font-bold">Key Features</h2>
                             <div className="grid grid-cols-2 gap-4">
                                 {data.keyFeatures.map((value, index) => (
-                                    <CardContainer key={`key-feat-${index}`}>
+                                    <CardContainer
+                                        className="hover:border-apple-blue hover:bg-apple-blue/25 border border-transparent transition-all duration-300 hover:border"
+                                        key={`key-feat-${index}`}
+                                    >
                                         <div className="flex items-center gap-3">
                                             <span className="bg-apple-blue h-2 w-2 rounded-full"></span>
                                             <p className="text-apple-label-primary font-medium">{value}</p>
@@ -91,7 +119,7 @@ const ProjectDetail = () => {
                                 <h3 className="text-apple-label-primary mb-3 text-lg font-semibold">Technologies Used</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {data.technologies.map((value, index) => (
-                                        <Badge key={`tech-${index}`} className="border-apple-blue border px-2 py-0.5 text-xs font-bold">
+                                        <Badge key={`tech-${index}`} className="border-apple-blue border px-2 py-0.5 text-xs font-semibold">
                                             {value}
                                         </Badge>
                                     ))}
@@ -121,7 +149,9 @@ const ProjectDetail = () => {
                             <div className="flex-1">
                                 <h3 className="text-apple-label-primary mb-3 text-lg font-semibold">Like this Project?</h3>
                                 <p className="text-apple-label-secondary mb-3 text-sm">Let's discuss how I can help bring your ideas to life.</p>
-                                <Button className="bg-apple-white text-apple-blue hover:bg-apple-white/90 w-full rounded-lg text-sm">Get In Touch</Button>
+                                <Button onClick={getInTouch} className="bg-apple-white text-apple-blue hover:bg-apple-white/90 w-full rounded-lg text-sm">
+                                    Get In Touch
+                                </Button>
                             </div>
                         </CardContainer>
                     </div>

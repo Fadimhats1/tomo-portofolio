@@ -68,15 +68,15 @@ const Certificate = () => {
     );
 
     return (
-        <MainContent title="Certificates">
+        <MainContent title="Certificates" contentWrapperClass="gap-8 px-2 sm:px-4 md:px-10" titleClassName="mx-2">
             {/* Category Filter */}
-            <div className="scrollbar-none overflow-x-auto">
+            <div className="scrollbar-none overflow-x-auto p-2">
                 <div className="flex items-center gap-4">
                     {(['All', ...CERTIFICATES_CATEGORIES] as const).map(value => (
                         <Button
                             key={value}
                             size="md"
-                            className="text-sm"
+                            className="text-sm transition-transform duration-300 hover:scale-105 active:scale-95"
                             variant={value === filterInfo.selectedCategory ? 'primary' : 'outline'}
                             onClick={() => {
                                 setFilterInfo(prev => ({
@@ -93,7 +93,7 @@ const Certificate = () => {
                 </div>
             </div>
 
-            <div className={clsx('flex-1', !(pagedCertificates.length > 0) && 'flex items-center justify-center')}>
+            <div className={clsx('mx-2 flex-1', !(pagedCertificates.length > 0) && 'flex items-center justify-center')}>
                 {/* Certificate Grid */}
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:grid-rows-2 md:gap-8 xl:grid-cols-3">
                     {(isMobile ? filteredCertificates.slice(0, filterInfo.visibleCount) : pagedCertificates).map((certificate, index, arr) => {

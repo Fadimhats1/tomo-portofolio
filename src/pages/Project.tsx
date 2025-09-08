@@ -80,11 +80,12 @@ const Project = () => {
     };
 
     return (
-        <MainContent title="Projects">
+        <MainContent title="Projects" contentWrapperClass="gap-8 px-2 sm:px-4 md:px-10" titleClassName="mx-2">
             {/* Search Input */}
             <InputText
                 id="input-search"
                 value={filterInfo.search}
+                wrapperClassName="mx-2"
                 placeholder="Search projects..."
                 leftElement={<Search size={20} className="text-apple-label-secondary" />}
                 onChange={e =>
@@ -97,13 +98,13 @@ const Project = () => {
             />
 
             {/* Category */}
-            <div className="scrollbar-none overflow-x-auto">
+            <div className="scrollbar-none overflow-x-auto p-2">
                 <div className="flex items-center gap-4">
                     {(['All', ...PROJECT_CATEGORIES] as const).map(value => (
                         <Button
                             key={value}
                             size="md"
-                            className="text-sm"
+                            className="text-sm transition-transform duration-300 hover:scale-105 active:scale-95"
                             variant={value === filterInfo.selectedCategory ? 'primary' : 'outline'}
                             onClick={() =>
                                 setFilterInfo({
@@ -119,7 +120,7 @@ const Project = () => {
                 </div>
             </div>
 
-            <div className={clsx('flex-1', !(pagedProjects.length > 0) && 'flex items-center justify-center')}>
+            <div className={clsx('mx-2 flex-1', !(pagedProjects.length > 0) && 'flex items-center justify-center')}>
                 {/* Project Card */}
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:grid-rows-2 md:gap-8 xl:grid-cols-3">
                     {pagedProjects.length > 0 ? (

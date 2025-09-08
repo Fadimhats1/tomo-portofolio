@@ -79,7 +79,13 @@ const About = () => {
                 <div ref={testimonialRef} className="scrollbar-none overflow-x-auto pb-6">
                     <div className="flex items-start gap-6">
                         {testimonials.map(testimonial => (
-                            <TestimonialCard key={testimonial.name} name={testimonial.name} rating={testimonial.rating} testimonial={testimonial.testimonial} />
+                            <TestimonialCard
+                                cardClassName="hover:border-apple-blue hover:bg-apple-blue/25 border border-transparent transition-all duration-300 hover:border"
+                                key={testimonial.name}
+                                name={testimonial.name}
+                                rating={testimonial.rating}
+                                testimonial={testimonial.testimonial}
+                            />
                         ))}
                     </div>
                 </div>

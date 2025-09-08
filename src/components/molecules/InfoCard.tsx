@@ -9,9 +9,10 @@ interface InfoCardProps extends Omit<CardContainerProps, 'children'>, IconBadgeP
     description: string | React.ReactNode;
     titleClassName?: string;
     descriptionClassName?: string;
+    onClickDescription?: () => void;
 }
 
-const InfoCard: React.FC<InfoCardProps> = ({ title, description, titleClassName, descriptionClassName, ...rest }) => {
+const InfoCard: React.FC<InfoCardProps> = ({ title, description, titleClassName, descriptionClassName, onClickDescription, ...rest }) => {
     const { className, isHorizontal, ...iconProps } = rest;
 
     return (
@@ -19,7 +20,9 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, description, titleClassName,
             <IconBadge {...iconProps} />
             <div>
                 <p className={twMerge(clsx('text-apple-label-tertiary text-xs', titleClassName))}>{title}</p>
-                <p className={twMerge(clsx('text-apple-label-secondary text-sm font-light', descriptionClassName))}>{description}</p>
+                <p className={twMerge(clsx('text-apple-label-secondary text-sm font-light', descriptionClassName))} onClick={onClickDescription}>
+                    {description}
+                </p>
             </div>
         </CardContainer>
     );

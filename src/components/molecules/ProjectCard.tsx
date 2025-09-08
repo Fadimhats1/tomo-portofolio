@@ -41,12 +41,12 @@ const ProjectCard: React.FC<CertificateCardProps> = ({ onClick, ...data }) => {
             <p className="text-apple-label-secondary mb-1.5 line-clamp-3 text-sm">{data.overview}</p>
             <div className="flex flex-wrap gap-2">
                 {data.technologies.slice(0, 3).map(value => (
-                    <Badge key={value} className="px-3 py-1 text-xs font-medium">
+                    <Badge key={value} className="border-apple-blue border px-2 py-0.5 text-xs font-semibold">
                         {value}
                     </Badge>
                 ))}
                 {techLen > 3 && (
-                    <Badge key="plus" className="px-3 py-1 text-xs font-medium">
+                    <Badge key="plus" className="border-apple-blue border px-2 py-0.5 text-xs font-semibold">
                         +{techLen - 3}
                     </Badge>
                 )}
