@@ -1,0 +1,83 @@
+@import 'tailwindcss';
+@plugin 'tailwind-scrollbar';
+
+@theme {
+    /* Font family */
+    --font-family-sans:
+        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+
+    /* Apple Dark Theme System Colors */
+    --color-apple-black: #000000;
+    --color-apple-gray6: #1c1c1e; /* System background */
+    --color-apple-gray5: #2c2c2e; /* Secondary system background */
+    --color-apple-gray4: #3a3a3c; /* Tertiary system background */
+    --color-apple-gray3: #48484a; /* System grouped background */
+    --color-apple-gray2: #636366; /* Quaternary system background */
+    --color-apple-gray: #8e8e93; /* Placeholder text */
+    --color-apple-white: #ffffff;
+
+    /* Apple Text Colors (Dark) */
+    --color-apple-text-primary: #ffffff;
+    --color-apple-text-secondary: #ebebf5;
+    --color-apple-text-tertiary: rgba(235, 235, 245, 0.6);
+    --color-apple-text-quaternary: rgba(235, 235, 245, 0.18);
+
+    /* Apple Blue System Colors */
+    --color-apple-blue-light: #64d2ff;
+    --color-apple-blue: #007aff; /* Primary blue */
+    --color-apple-blue-dark: #0051d5;
+
+    /* Apple System Colors (Dark Mode) */
+    --color-apple-red: #ff453a;
+    --color-apple-orange: #ff9f0a;
+    --color-apple-yellow: #ffd60a;
+    --color-apple-green: #32d74b;
+    --color-apple-mint: #66d4cf;
+    --color-apple-teal: #40cbe0;
+    --color-apple-cyan: #64d2ff;
+    --color-apple-indigo: #5e5ce6;
+    --color-apple-purple: #bf5af2;
+    --color-apple-pink: #ff2d92;
+    --color-apple-brown: #ac8e68;
+
+    /* Apple Fill Colors (Dark) */
+    --color-apple-fill-primary: rgba(120, 120, 128, 0.36);
+    --color-apple-fill-secondary: rgba(120, 120, 128, 0.32);
+    --color-apple-fill-tertiary: rgba(120, 120, 128, 0.24);
+    --color-apple-fill-quaternary: rgba(120, 120, 128, 0.18);
+
+    /* Apple Separator Colors (Dark) */
+    --color-apple-separator-opaque: #38383a;
+    --color-apple-separator-non-opaque: rgba(84, 84, 88, 0.6);
+
+    /* Apple Label Colors (Alternative names) */
+    --color-apple-label-primary: #ffffff;
+    --color-apple-label-secondary: rgba(235, 235, 245, 0.6);
+    --color-apple-label-tertiary: rgba(235, 235, 245, 0.3);
+    --color-apple-label-quaternary: rgba(235, 235, 245, 0.18);
+
+    /* Backdrop Blur */
+    --backdrop-blur-apple: 20px;
+
+    /* Multiple Keyframes */
+    --keyframes-fadeIn: 0% {opacity: 0; transform: scale(0.95) ;} 100% {opacity: 1; transform: scale(1) ;};
+    --keyframes-slideUp: 0% {opacity: 0; transform: translateY(20px) ;} 100% {opacity: 1; transform: translateY(0) ;};
+    --keyframes-slideDown: 0% {opacity: 0; transform: translateY(-20px) ;} 100% {opacity: 1; transform: translateY(0) ;};
+    --keyframes-bounce-gentle:
+        0%, 20%, 53%, 80%, 100% {transform: translate3d(0, 0, 0) ;} 40%,
+        43% {transform: translate3d(0, -8px, 0) ;} 70% {transform: translate3d(0, -4px, 0) ;} 90% {transform: translate3d(0, -2px, 0) ;};
+
+    /* Multiple Animations */
+    --animate-fadeIn: fadeIn 0.2s ease-out forwards;
+    --animate-slideUp: slideUp 0.3s ease-out forwards;
+    --animate-slideDown: slideDown 0.3s ease-out forwards;
+    --animate-bounce-gentle: bounce-gentle 1s ease-in-out;
+}
+
+@layer base {
+    body {
+        font-family: theme(--font-family-sans);
+        background-color: #1c1c1e;
+    }
+}
