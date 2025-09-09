@@ -4,7 +4,8 @@ import Button from '../atoms/Button';
 import { Menu, X } from 'lucide-react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { useDropdown } from '../../hooks/useDropdown';
+import { useAnimationToggle } from '../../hooks/useAnimationToggle';
+import CardContainer from '../atoms/CardContainer';
 
 const Header = () => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -29,7 +30,7 @@ const Header = () => {
     }, [location.pathname]);
 
     useEffect(() => {
-        ddClose();
+        close(true);
     }, [location.pathname]);
 
     const navigationLinks = [
@@ -40,32 +41,41 @@ const Header = () => {
         { to: '/contact', label: 'Contact' },
     ];
 
-    const {
-        isOpen: ddIsOpen,
-        close: ddClose,
-        toggle: ddToggle,
-        element: ddElement,
-    } = useDropdown({
-        children: (
-            <nav className="flex w-full flex-col gap-2">
-                {navigationLinks.map(link => (
-                    <NavLink
-                        key={link.to}
-                        to={link.to}
-                        className={({ isActive }) =>
-                            twMerge(
-                                clsx(
-                                    'text-apple-label-secondary hover:text-apple-label-primary hover:bg-apple-gray4/50 w-full rounded-lg px-3 py-2 font-medium transition-colors',
-                                    isActive && 'text-apple-label-primary bg-apple-blue'
-                                )
-                            )
-                        }
-                    >
-                        {link.label}
-                    </NavLink>
-                ))}
-            </nav>
+    const { close, state, element, toggle } = useAnimationToggle({
+        children: state => (
+            <div
+                className={twMerge(
+                    clsx(
+                        'text-apple-label-primary absolute top-16 left-0 z-50 w-full overflow-hidden px-4 transition-all duration-300 ease-out',
+                        state === 'showed' ? 'opacity-100' : 'opacity-0'
+                    )
+                )}
+            >
+                <CardContainer isHorizontal={true} className='border border-apple-gray3'>
+                    <nav className="flex w-full flex-col gap-2">
+                        {navigationLinks.map(link => (
+                            <NavLink
+                                key={link.to}
+                                to={link.to}
+                                className={({ isActive }) =>
+                                    twMerge(
+                                        clsx(
+                                            'text-apple-label-secondary hover:text-apple-label-primary hover:bg-apple-gray4/50 w-full rounded-lg px-3 py-2 font-medium transition-colors',
+                                            isActive && 'text-apple-label-primary bg-apple-blue'
+                                        )
+                                    )
+                                }
+                            >
+                                {link.label}
+                            </NavLink>
+                        ))}
+                    </nav>
+                </CardContainer>
+            </div>
         ),
+        animation: {
+            duration: 300,
+        },
     });
 
     return (
@@ -74,13 +84,13 @@ const Header = () => {
                 {/* Mobile Header */}
                 <div className="flex items-center justify-between px-4 py-4 sm:px-6 md:hidden md:py-6">
                     <h1 className="text-apple-label-primary text-xl font-bold">Fathariq Dimas | Tomo</h1>
-                    <Button variant="outline" className="rounded-lg p-3" onClick={ddToggle} aria-label={ddIsOpen ? 'Close menu' : 'Open menu'}>
-                        {ddIsOpen ? <X size={16} /> : <Menu size={16} />}
+                    <Button variant="outline" className="rounded-lg p-3" onClick={toggle} aria-label={state === 'showed' ? 'Close menu' : 'Open menu'}>
+                        {state === 'showed' ? <X size={16} /> : <Menu size={16} />}
                     </Button>
                 </div>
 
                 {/* Mobile Dropdown */}
-                {ddElement}
+                {element}
             </div>
 
             {/* Desktop Navigation */}

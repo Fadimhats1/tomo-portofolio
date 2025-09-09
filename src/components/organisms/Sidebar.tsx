@@ -2,56 +2,42 @@ import avatar from '../../assets/images/apple-emoji.png';
 import InfoCard from '../molecules/InfoCard';
 import IconBadge from '../atoms/IconBadge';
 import Badge from '../atoms/Badge';
-import { useContext, useEffect } from 'react';
-import { AppContext } from '../../App';
+import { useAnimationToggle } from '../../hooks/useAnimationToggle';
+import CardContainer from '../atoms/CardContainer';
+import clsx from 'clsx';
 
 const Sidebar = () => {
-    const appContext = useContext(AppContext);
+    const { element, open, close } = useAnimationToggle({
+        isOutsideParent: true,
+        children: state => (
+            <CardContainer
+                className={clsx(
+                    'fixed bottom-8 left-1/2 w-fit -translate-x-1/2 rounded-lg px-3 py-1.5 transition-all duration-300',
+                    state === 'showed' ? 'opacity-100' : 'opacity-0'
+                )}
+            >
+                <p className="text-apple-label-primary text-sm">Copied!</p>
+            </CardContainer>
+        ),
+        onShowed: () => handleCopy,
+        animation: {
+            duration: 300,
+        },
+    });
 
     const handleCopy = async (text: string) => {
-        if (!appContext) return;
-
         try {
             await navigator.clipboard.writeText(text);
 
-            appContext.setGlobalValue(prev => ({
-                ...prev,
-                copyState: 'onShow',
-            }));
+            open();
 
             setTimeout(() => {
-                appContext.setGlobalValue(prev => ({
-                    ...prev,
-                    copyState: 'onHide',
-                }));
+                close();
             }, 1500);
         } catch (err) {
             console.error('Failed to copy!', err);
         }
     };
-
-    useEffect(() => {
-        let timer: number;
-        if (appContext?.copyState === 'onShow') {
-            timer = setTimeout(() => {
-                appContext.setGlobalValue(prev => ({
-                    ...prev,
-                    copyState: 'show',
-                }));
-            }, 10);
-        } else if (appContext?.copyState === 'onHide') {
-            timer = setTimeout(() => {
-                appContext.setGlobalValue(prev => ({
-                    ...prev,
-                    copyState: 'hide',
-                }));
-            }, 300);
-        }
-
-        return () => {
-            if (timer) clearInterval(timer);
-        };
-    }, [appContext?.copyState]);
 
     return (
         <nav className="bg-apple-gray5 border-e-apple-gray4 fixed top-0 z-20 hidden h-full w-80 border-e lg:block">
@@ -116,6 +102,7 @@ const Sidebar = () => {
                     </div>
                 </div>
             </div>
+            {element}
         </nav>
     );
 };

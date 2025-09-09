@@ -15,8 +15,6 @@ export interface MainContentProps {
 const MainContent: React.FC<MainContentProps> = ({ title, titleClassName, mainContentClass, contentWrapperClass, children }) => {
     const appContext = useContext(AppContext);
 
-    console.log('test');
-
     return (
         <main className={twMerge(clsx('bg-apple-gray6 relative flex min-h-[calc(100vh-56px)] flex-col gap-6 pt-[76px] pb-10 lg:ms-80', mainContentClass))}>
             <div className={twMerge(clsx('flex flex-1 flex-col gap-10 px-4 sm:px-6 md:px-12', contentWrapperClass))}>
