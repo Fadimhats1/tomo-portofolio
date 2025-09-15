@@ -9,7 +9,7 @@ const Resume = () => {
             {/* Education */}
             <div>
                 <div className="mb-8 flex w-fit items-center gap-3">
-                    <IconBadge name="GraduationCap" wrapperClassName="p-1 rounded-lg" />
+                    <IconBadge name="GraduationCap" wrapperProps={{ className: 'p-1 rounded-lg' }} />
                     <h3 className="text-apple-label-primary text-2xl font-bold">Education</h3>
                 </div>
                 <div>
@@ -48,7 +48,7 @@ const Resume = () => {
             {/* Experience */}
             <div>
                 <div className="mb-8 flex w-fit items-center gap-3">
-                    <IconBadge name="Briefcase" wrapperClassName="p-1 rounded-lg" />
+                    <IconBadge name="Briefcase" wrapperProps={{ className: 'p-1 rounded-lg' }} />
                     <h3 className="text-apple-label-primary text-2xl font-bold">Experience</h3>
                 </div>
                 <div>

@@ -4,7 +4,8 @@ import Footer from '../organisms/Footer';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import { Outlet, useLocation } from 'react-router';
-import { useEffect } from 'react';
+import { useContext, useEffect, useLayoutEffect } from 'react';
+import { AppContext } from '../../App';
 
 interface MainLayoutProps {
     bodyClass?: string;
@@ -15,10 +16,30 @@ interface MainLayoutProps {
 
 const MainLayout: React.FC<MainLayoutProps> = ({ bodyClass, layoutContainerClass, isShowHeader = true, isShowSidebar = true }) => {
     const { pathname } = useLocation();
+    const context = useContext(AppContext);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
+        if (!context) return;
+
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+        if (!context.scrollPadding && scrollbarWidth > 0) {
+            context.setGlobalValue(prev => ({
+                ...prev,
+                scrollPadding: scrollbarWidth,
+            }));
+        }
+
+        // Apply padding before paint
+        document.body.style.paddingRight = `${scrollbarWidth > 0 ? 0 : context.scrollPadding}px`;
+
         window.scrollTo({ top: 0, behavior: 'instant' });
-    }, [pathname]);
+
+        return () => {
+            // Remove padding after unmount
+            document.body.style.paddingRight = '';
+        };
+    }, [pathname, context]);
 
     return (
         <div className={twMerge(clsx('bg-apple-gray6', bodyClass))}>

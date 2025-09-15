@@ -15,13 +15,13 @@ const ProjectCard: React.FC<CertificateCardProps> = ({ onClick, ...data }) => {
         <div className="absolute inset-0 z-[4] flex items-center justify-center gap-4 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <IconBadge
                 name="ExternalLink"
-                wrapperClassName="bg-apple-blue rounded-full hover:bg-apple-blue/70 transition-all"
+                wrapperProps={{ className: 'bg-apple-blue rounded-full hover:bg-apple-blue/70 transition-all' }}
                 className="text-apple-label-primary font-medium"
             />
 
             <IconBadge
                 name="Github"
-                wrapperClassName="bg-apple-blue rounded-full hover:bg-apple-blue/70 transition-all"
+                wrapperProps={{ className: 'bg-apple-blue rounded-full hover:bg-apple-blue/70 transition-all' }}
                 className="text-apple-label-primary font-medium"
             />
         </div>
@@ -29,12 +29,10 @@ const ProjectCard: React.FC<CertificateCardProps> = ({ onClick, ...data }) => {
 
     return (
         <ImageCard
-            cardClassName="hover:scale-102 transition-all duration-300 group cursor-pointer"
-            image={data.galeries[0]}
-            imgWrapperClassName="group-hover:scale-105 transition-all duration-300"
-            alt={data.name}
+            cardProps={{ className: 'hover:scale-102 transition-all duration-300 group cursor-pointer', onClick: onClick }}
+            imageProps={{ src: data.galeries[0], alt: data.name }}
+            imageWrapperProps={{ className: 'group-hover:scale-105 transition-all duration-300' }}
             imageOverlay={imageOverlay}
-            onClick={onClick}
         >
             <h4 className="text-apple-label-primary group-hover:text-apple-blue line-clamp-1 text-lg font-semibold transition-colors">{data.name}</h4>
             <p className="text-apple-blue text-sm font-medium">{data.category}</p>

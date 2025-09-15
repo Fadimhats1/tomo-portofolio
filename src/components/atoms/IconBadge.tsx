@@ -4,6 +4,7 @@ import type { LucideIcon } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import { Link } from 'react-router';
+import { motion, type HTMLMotionProps } from 'framer-motion'; // make sure it's 'framer-motion'
 
 type IconName = keyof typeof LucideIcons;
 
@@ -11,18 +12,30 @@ export interface IconBadgeProps {
     name: IconName;
     size?: number;
     className?: string;
-    wrapperClassName?: string;
+    wrapperProps?: HTMLMotionProps<'div'>;
     to?: string;
     external?: boolean;
 }
 
-const IconBadge: React.FC<IconBadgeProps> = ({ name, size = 20, className, wrapperClassName, to, external }) => {
+const IconBadge: React.FC<IconBadgeProps> = ({
+    name,
+    size = 20,
+    className,
+    wrapperProps = {},
+    to,
+    external,
+}) => {
     const LucideIcon = LucideIcons[name] as LucideIcon;
 
     const content = (
-        <div className={twMerge(clsx('bg-apple-blue/25 rounded-xl p-3.5', wrapperClassName))}>
+        <motion.div
+            {...wrapperProps}
+            className={twMerge(
+                clsx('bg-apple-blue/25 rounded-xl p-3.5', wrapperProps.className)
+            )}
+        >
             <LucideIcon size={size} className={twMerge(clsx('text-apple-blue', className))} />
-        </div>
+        </motion.div>
     );
 
     if (!to) return content;

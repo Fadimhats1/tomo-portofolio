@@ -60,7 +60,7 @@ const Sidebar = () => {
                     <InfoCard
                         onClickDescription={() => handleCopy('Fadimhats1@gmail.com')}
                         className="bg-apple-gray4 mt-2"
-                        name="Mail"
+                        iconProps={{ name: 'Mail' }}
                         title="EMAIL"
                         descriptionClassName="cursor-pointer"
                         description="Fadimhats1@gmail.com"
@@ -68,13 +68,13 @@ const Sidebar = () => {
                     <InfoCard
                         onClickDescription={() => handleCopy('+6285171686824')}
                         className="bg-apple-gray4"
-                        name="Phone"
+                        iconProps={{ name: 'Phone' }}
                         title="PHONE"
                         descriptionClassName="cursor-pointer"
                         description="+62 851 - 7168 - 6824"
                     />
-                    <InfoCard className="bg-apple-gray4" name="Calendar" title="BIRTHDAY" description="October 13, 2000" />
-                    <InfoCard className="bg-apple-gray4" name="MapPin" title="LOCATION" description="Tangerang - Banten, Indonesia" />
+                    <InfoCard className="bg-apple-gray4" iconProps={{ name: 'Calendar' }} title="BIRTHDAY" description="October 13, 2000" />
+                    <InfoCard className="bg-apple-gray4" iconProps={{ name: 'MapPin' }} title="LOCATION" description="Tangerang - Banten, Indonesia" />
 
                     {/* Social Media */}
                     <div className="flex gap-3">
@@ -82,21 +82,30 @@ const Sidebar = () => {
                             to="https://www.facebook.com/share/19cuNTE4gU/?mibextid=wwXIfr"
                             external
                             name="Facebook"
-                            wrapperClassName="group bg-apple-gray4 hover:border-apple-blue hover:bg-apple-blue/25 border border-transparent transition-all duration-300 hover:border"
+                            wrapperProps={{
+                                className:
+                                    'group bg-apple-gray4 hover:border-apple-blue hover:bg-apple-blue/25 border border-transparent transition-all duration-300 hover:border',
+                            }}
                             className="text-apple-label-secondary group-hover:text-apple-blue transition-all duration-300"
                         />
                         <IconBadge
                             to="https://www.instagram.com/fadimhats?igsh=MWZtcHM0MHJxbzVkMg%3D%3D&utm_source=qr"
                             external
                             name="Instagram"
-                            wrapperClassName="group bg-apple-gray4 hover:border-apple-blue hover:bg-apple-blue/25 border border-transparent transition-all duration-300 hover:border"
+                            wrapperProps={{
+                                className:
+                                    'group bg-apple-gray4 hover:border-apple-blue hover:bg-apple-blue/25 border border-transparent transition-all duration-300 hover:border',
+                            }}
                             className="text-apple-label-secondary group-hover:text-apple-blue transition-all duration-300"
                         />
                         <IconBadge
                             to="https://www.linkedin.com/in/fathariq-dimas-ab81bb1b5"
                             external
                             name="Linkedin"
-                            wrapperClassName="group bg-apple-gray4 hover:border-apple-blue hover:bg-apple-blue/25 border border-transparent transition-all duration-300 hover:border"
+                            wrapperProps={{
+                                className:
+                                    'group bg-apple-gray4 hover:border-apple-blue hover:bg-apple-blue/25 border border-transparent transition-all duration-300 hover:border',
+                            }}
                             className="text-apple-label-secondary group-hover:text-apple-blue transition-all duration-300"
                         />
                     </div>

@@ -10,9 +10,9 @@ const Contact = () => {
                     <div className="flex flex-col gap-6">
                         <h3 className="text-apple-label-primary text-2xl font-semibold">Get in Touch</h3>
                         <div className="flex flex-col gap-4">
-                            <InfoCard className="bg-transparent p-0" name="MapPin" title="LOCATION" description="Tangerang - Banten, Indonesia" />
-                            <InfoCard className="bg-transparent p-0" name="Phone" title="PHONE" description="+62 851 - 7168 - 6824" />
-                            <InfoCard className="bg-transparent p-0" name="Mail" title="EMAIL" description="Fadimhats1@gmail.com" />
+                            <InfoCard className="bg-transparent p-0" iconProps={{name: "MapPin"}} title="LOCATION" description="Tangerang - Banten, Indonesia" />
+                            <InfoCard className="bg-transparent p-0" iconProps={{name: "Phone"}} title="PHONE" description="+62 851 - 7168 - 6824" />
+                            <InfoCard className="bg-transparent p-0" iconProps={{name: "Mail"}} title="EMAIL" description="Fadimhats1@gmail.com" />
                         </div>
                     </div>
                 </div>

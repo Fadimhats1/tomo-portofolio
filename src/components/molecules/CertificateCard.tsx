@@ -17,13 +17,11 @@ const CertificateCard: React.FC<CertificateCardProps> = ({ onClick, ...data }) =
 
     return (
         <ImageCard
-            cardClassName="hover:scale-102 transition-all duration-300 group cursor-pointer"
-            image={data.image}
-            imgWrapperClassName="group-hover:scale-105 transition-all duration-300"
-            alt={data.name}
+            cardProps={{ className: 'hover:scale-102 transition-all duration-300 group cursor-pointer', onClick: onClick }}
+            imageProps={{ src: data.image, alt: data.name }}
+            imageWrapperProps={{ className: 'group-hover:scale-105 transition-all duration-300' }}
             imageOverlay={imageOverlay}
-            containerClassName="justify-between h-full"
-            onClick={onClick}
+            containerProps={{ className: 'justify-between h-full' }}
         >
             <div className="flex flex-col gap-1.5">
                 <div className="text-apple-label-tertiary mb-1 flex items-center gap-4">

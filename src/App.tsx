@@ -10,8 +10,8 @@ import ProjectDetail from './pages/ProjectDetail';
 import Contact from './pages/Contact';
 
 export type AppState = {
-    copyState: 'hide' | 'onShow' | 'show' | 'onHide';
     mail?: { subject: string; message: string } | null;
+    scrollPadding: number;
 };
 
 export type AppContextType = AppState & {
@@ -46,8 +46,8 @@ const router = createBrowserRouter([
 
 const App = () => {
     const [globalValue, setGlobalValue] = useState<AppState>({
-        copyState: 'hide',
         mail: null,
+        scrollPadding: 0
     });
 
     return (

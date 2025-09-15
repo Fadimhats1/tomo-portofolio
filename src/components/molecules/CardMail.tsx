@@ -52,7 +52,7 @@ const CardMail = () => {
                         <InputText
                             id="input-name"
                             placeholder="Your Name"
-                            wrapperClassName="bg-apple-gray6 px-4 py-3 flex-1"
+                            wrapperProps={{ className: 'bg-apple-gray6 px-4 py-3 flex-1' }}
                             className="placeholder-apple-label-tertiary text-sm"
                             value={inputMail.name}
                             onChange={e => setInputMail({ ...inputMail, name: e.target.value })}
@@ -60,7 +60,7 @@ const CardMail = () => {
                         <InputText
                             id="input-email"
                             placeholder="Your Email"
-                            wrapperClassName="bg-apple-gray6 px-4 py-3 flex-1"
+                            wrapperProps={{ className: 'bg-apple-gray6 px-4 py-3 flex-1' }}
                             className="placeholder-apple-label-tertiary text-sm"
                             value={inputMail.email}
                             onChange={e => setInputMail({ ...inputMail, email: e.target.value })}
@@ -69,7 +69,7 @@ const CardMail = () => {
                     <InputText
                         id="input-subject"
                         placeholder="Subject"
-                        wrapperClassName="bg-apple-gray6 px-4 py-3"
+                        wrapperProps={{ className: 'bg-apple-gray6 px-4 py-3' }}
                         className="placeholder-apple-label-tertiary text-sm"
                         value={inputMail.subject}
                         onChange={e => setInputMail({ ...inputMail, subject: e.target.value })}
@@ -77,7 +77,7 @@ const CardMail = () => {
                     <InputTextArea
                         id="input-message"
                         placeholder="Your Message"
-                        wrapperClassName="bg-apple-gray6 px-4 py-3"
+                        wrapperProps={{ className: 'bg-apple-gray6 px-4 py-3' }}
                         className="placeholder-apple-label-tertiary scrollbar-none text-sm"
                         value={(() => (inputMail.name ? inputMail?.message?.replace(/{name}/g, inputMail.name) : inputMail.message))()}
                         onChange={e => setInputMail({ ...inputMail, message: e.target.value })}

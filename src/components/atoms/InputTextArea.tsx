@@ -1,24 +1,26 @@
 import clsx from 'clsx';
+import { motion, type HTMLMotionProps } from 'motion/react';
 import { twMerge } from 'tailwind-merge';
 
-interface InputTextAreaProps extends React.InputHTMLAttributes<HTMLTextAreaElement> {
+interface InputTextAreaProps extends HTMLMotionProps<'textarea'> {
     id: string;
-    wrapperClassName?: string;
+    wrapperProps?: HTMLMotionProps<'label'>;
 }
 
-const InputTextArea: React.FC<InputTextAreaProps> = ({ id, wrapperClassName, value, onChange, className, ...rest }) => {
+const InputTextArea: React.FC<InputTextAreaProps> = ({ id, value, onChange, className, wrapperProps, ...rest }) => {
     return (
-        <label
+        <motion.label
+            {...wrapperProps}
             htmlFor={id}
             className={twMerge(
                 clsx(
                     'bg-apple-gray4 focus-within:ring-apple-blue flex cursor-text items-center gap-3 rounded-xl px-3 py-2 focus-within:ring-2',
-                    wrapperClassName
+                    wrapperProps?.className
                 )
             )}
         >
-            <textarea
-                type="text"
+            <motion.textarea
+                {...rest}
                 id={id}
                 className={twMerge(
                     clsx('text-apple-label-primary placeholder-apple-label-secondary flex-1 resize-none bg-transparent outline-none', className)
@@ -26,9 +28,8 @@ const InputTextArea: React.FC<InputTextAreaProps> = ({ id, wrapperClassName, val
                 rows={6}
                 value={value}
                 onChange={onChange}
-                {...rest}
-            ></textarea>
-        </label>
+            ></motion.textarea>
+        </motion.label>
     );
 };
 

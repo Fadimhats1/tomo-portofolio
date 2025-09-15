@@ -4,7 +4,8 @@ import CardContainer, { type CardContainerProps } from '../atoms/CardContainer';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-interface InfoCardProps extends Omit<CardContainerProps, 'children'>, IconBadgeProps {
+interface InfoCardProps extends Omit<CardContainerProps, 'children'> {
+    iconProps: IconBadgeProps;
     title: string;
     description: string | React.ReactNode;
     titleClassName?: string;
@@ -12,11 +13,9 @@ interface InfoCardProps extends Omit<CardContainerProps, 'children'>, IconBadgeP
     onClickDescription?: () => void;
 }
 
-const InfoCard: React.FC<InfoCardProps> = ({ title, description, titleClassName, descriptionClassName, onClickDescription, ...rest }) => {
-    const { className, isHorizontal, ...iconProps } = rest;
-
+const InfoCard: React.FC<InfoCardProps> = ({ iconProps, title, description, titleClassName, descriptionClassName, onClickDescription, ...rest }) => {
     return (
-        <CardContainer className={clsx('items-center', className)} isHorizontal={isHorizontal}>
+        <CardContainer className={clsx('items-center', rest.className)} isHorizontal={rest.isHorizontal}>
             <IconBadge {...iconProps} />
             <div>
                 <p className={twMerge(clsx('text-apple-label-tertiary text-xs', titleClassName))}>{title}</p>

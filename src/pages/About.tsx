@@ -47,7 +47,7 @@ const About = () => {
                 <h3 className="text-apple-label-primary mb-6 text-2xl font-bold">What I'm Doing</h3>
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <InfoCard
-                        name="Palette"
+                        iconProps={{ name: 'Palette' }}
                         className="hover:border-apple-blue hover:bg-apple-blue/25 items-start border border-transparent p-6 transition-all duration-300 hover:border"
                         title="Web Design"
                         titleClassName="text-apple-label-primary text-lg font-semibold mb-1"
@@ -55,7 +55,7 @@ const About = () => {
                         descriptionClassName="text-base"
                     />
                     <InfoCard
-                        name="Code"
+                        iconProps={{ name: 'Code' }}
                         className="hover:border-apple-blue hover:bg-apple-blue/25 items-start border border-transparent p-6 transition-all duration-300 hover:border"
                         title="Web Development"
                         titleClassName="text-apple-label-primary text-lg font-semibold mb-1"
@@ -63,7 +63,7 @@ const About = () => {
                         descriptionClassName="text-base"
                     />
                     <InfoCard
-                        name="Smartphone"
+                        iconProps={{ name: 'Smartphone' }}
                         className="hover:border-apple-blue hover:bg-apple-blue/25 items-start border border-transparent p-6 transition-all duration-300 hover:border md:col-span-2"
                         title="Mobile Apps Development"
                         titleClassName="text-apple-label-primary text-lg font-semibold mb-1"

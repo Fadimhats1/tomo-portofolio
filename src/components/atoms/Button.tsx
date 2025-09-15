@@ -1,14 +1,15 @@
 import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
+    children: React.ReactNode;
     variant?: 'primary' | 'secondary' | 'outline';
     size?: 'sm' | 'md' | 'lg';
     isLoading?: boolean;
 }
 
-// forwardRef here 👇
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ children, variant = 'primary', size = 'md', isLoading = false, className, ...props }, ref) => {
     const baseStyles =
         'inline-flex items-center justify-center rounded-xl font-medium transition-colors focus:outline-none disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed';
@@ -26,8 +27,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ children, variant =
     };
 
     return (
-        <button
-            ref={ref} // ✅ forward the ref
+        <motion.button
+            ref={ref}
             className={twMerge(clsx(baseStyles, variantStyles[variant], sizeStyles[size], className))}
             disabled={isLoading || props.disabled}
             {...props}
@@ -39,10 +40,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ children, variant =
                 </svg>
             ) : null}
             {children}
-        </button>
+        </motion.button>
     );
 });
 
-Button.displayName = 'Button'; // ✅ for debugging with forwardRef
+Button.displayName = 'Button';
 
 export default Button;
